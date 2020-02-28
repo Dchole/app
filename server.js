@@ -11,7 +11,7 @@ require("dotenv").config()
 const tasks = require("./routes/api/tasks")
 
 // Middlewares
-app.use(express.json())
+// app.use(express.json())
 app.use(express.static(path.join(__dirname, "build")))
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")))
 
