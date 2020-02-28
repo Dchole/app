@@ -16,15 +16,12 @@ app.use(express.static(path.join(__dirname, "build")))
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")))
 
 mongoose
-  .connect(
-    "mongodb+srv://bunny:halloween0@cluster0-4lvon.mongodb.net/test?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false
-    }
-  )
+  .connect(process.env.DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  })
   .then(() => console.log("Connected to Database!"))
   .catch(err => console.log(err))
 
