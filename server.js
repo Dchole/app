@@ -1,6 +1,5 @@
 const express = require("express")
 const mongoose = require("mongoose")
-const favicon = require("serve-favicon")
 const path = require("path")
 
 const app = express()
@@ -13,7 +12,6 @@ const tasks = require("./routes/api/tasks")
 // Middlewares
 app.use(express.json())
 app.use(express.static(path.join(__dirname, "build")))
-app.use(favicon(path.join(__dirname, "build", "favicon.ico")))
 
 mongoose
   .connect(process.env.DB, {
