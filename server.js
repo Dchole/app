@@ -11,20 +11,20 @@ const tasks = require("./routes/api/tasks")
 
 // Middlewares
 app.use(express.json())
+app.use(express.static(path.join(__dirname, "build")))
 
 mongoose
   .connect(process.env.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
-    // useFindAndModify: false
+    useCreateIndex: true,
+    useFindAndModify: false
   })
   .then(() => console.log("Connected to Database!"))
   .catch(err => console.log(err))
 
 // Routes Middlewares
 app.use("/api/tasks", tasks)
-app.use(express.static(path.join(__dirname, "build")))
 
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "build", "index.html"))
