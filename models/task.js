@@ -23,6 +23,10 @@ const taskSchema = new Schema({
   description: {
     type: String,
     max: 500
+  },
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
   }
 })
 
