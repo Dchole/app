@@ -1,7 +1,8 @@
 const router = require("express").Router()
 const Task = require("../../models/task")
+const authenticate = require("../middleware/auth")
 
-router.get("/", async (req, res) => {
+router.get("/", authenticate, async (req, res) => {
   try {
     const tasks = await Task.find()
     res.json(tasks.reverse())
@@ -11,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 })
 
-router.post("/", async (req, res) => {
+router.post("/", authenticate, async (req, res) => {
   const task = new Task({
     title: req.body.title,
     status: req.body.status,
@@ -28,7 +29,7 @@ router.post("/", async (req, res) => {
   }
 })
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", authenticate, async (req, res) => {
   try {
     const task = await Task.findByIdAndUpdate(req.params.id, req.body)
     res.json(task)
@@ -38,7 +39,7 @@ router.put("/:id", async (req, res) => {
   }
 })
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticate, async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id)
     res.json({ message: "Delete Successful!" })

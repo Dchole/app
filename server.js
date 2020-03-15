@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000
 require("dotenv").config()
 
 const tasks = require("./routes/api/tasks")
+const user = require("./routes/api/user")
 
 // Middlewares
 app.use(express.json())
@@ -27,6 +28,7 @@ mongoose
 
 // Routes Middlewares
 app.use("/api/tasks", tasks)
+app.use("/api/user", user)
 
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "build", "index.html"))

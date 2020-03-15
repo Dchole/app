@@ -12,6 +12,10 @@ const taskSchema = new Schema({
     type: Schema.Types.Boolean,
     default: false
   },
+  postedDate: {
+    type: Date,
+    default: Date.now
+  },
   expTime: {
     type: Date,
     required: true
