@@ -22,7 +22,8 @@ const userSchema = new Schema({
   registered_date: {
     type: Date,
     default: Date.now
-  }
+  },
+  refresh_tokens: [{ type: String }]
 })
 
 module.exports = mongoose.model("User", userSchema)

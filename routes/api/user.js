@@ -62,13 +62,9 @@ router.post("/login", async (req, res) => {
 router.post("/token", (req, res) => {
   const { token } = req.body
 
-  if (!token) {
-    return res.sendStatus(401)
-  }
+  if (!token) return res.sendStatus(401)
 
-  if (!refreshTokens.includes(token)) {
-    return res.sendStatus(403)
-  }
+  if (!refreshTokens.includes(token)) return res.sendStatus(403)
 
   jwt.verify(token, process.env.REFRESH_SECRET, (err, user) => {
     if (err) {
